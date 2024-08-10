@@ -19,7 +19,7 @@
         </p>
         <% else %>
         <p class="d-flex align-self-end">
-          <%= link_to 'フォローする', user_relationships_path(@user.id), data:{trubo_method: :post} ,class:"btn btn-success" %>
+          <%= link_to 'フォローする', user_relationships_path(@user.id), data:{turbo_method: :post} ,class:"btn btn-success" %>
         </p>
       <% end %>
     <% end %>
