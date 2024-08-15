@@ -16,9 +16,11 @@
             <%= f.label :password, "パスワード" %>
           </div>
           <div class="column-right">
-            <%= link_to "パスワードを忘れた場合" new_user_password_path %>
+            <%= link_to "パスワードを忘れた場合" , new_user_password_path %>
           </div>
+          <%= f.password_field :password,autofocus:true,autocomplete:"password" %>
         </div>
+      </div>
         <div class="box-login">
           <%= f.submit "ログイン" %>
           <% if devise_mapping.rememberable? %>
@@ -26,7 +28,7 @@
             <%= f.check_box :remember_me %>
             <%= f.label :remember, "ログインしたままにする" %>
           </div>
-          <% end %>
+        <% end %>
         </div>
         <% end %>
 
