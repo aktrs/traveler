@@ -23,6 +23,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.page(params[:page]).per(7).reverse_order
+    view_count = ViewCount.new(post_id: @post.id, user_id: current_user.id)
+    view_count.save
   end
 
   def edit
