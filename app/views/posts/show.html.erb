@@ -26,6 +26,17 @@
         <% end %>
         <% end %>
         <a>&emsp;閲覧数：<%= @post.view_counts.count %></a>
+        <script>
+        $('#star-rate<%= @post.id %>').empty();
+        $('#star-rate<%= @post.id %>').raty({
+          size    : 36,
+          starOff : '<%= asset_path('star-off.png') %>',
+          starOn  : '<%= asset_path('star-on.png') %>',
+          half    : false,
+          readOnly: true,
+          score   : <%= @post.star %>,
+        });
+        </script>
       <h2>感想</h2>
       <p id="text"><%= @post.text %></p>
       <% if @post.user == current_user %>
@@ -39,7 +50,6 @@
       <%= f.text_area :comment, :size=>"60x3",placeholder: "コメントする" %>
       <%= f.submit "送信する", class: "btn btn-success mb-4" %>
       <% end %> 
-
       <p>コメント件数:<%= @comments.count %></p>
         <% @comments.each do |comment| %>
       <div class="comments-index mb-2">
