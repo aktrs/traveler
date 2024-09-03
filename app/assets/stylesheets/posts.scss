@@ -51,9 +51,19 @@ h1{
     background-size:100% 100%;
 }
 
-.comments{
-    column-count:2;
-}
+.comments {
+    margin-left:50px; /* 中央揃え */
+  }
+  
+  .comments-index {
+    width: 90%; /* コメント要素の幅を狭める */
+    margin-bottom: 20px; /* 下にマージンを追加 */
+    background-color: #fff;
+    border: 1px #000 solid;
+    padding: 10px; /* 内部のパディングを追加して見た目を改善 */
+    box-sizing: border-box; /* パディング込みのサイズ計算 */
+  }
+  
 
 #text{
     font-size:18px;
