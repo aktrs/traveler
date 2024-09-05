@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :authenticate_user!, only: [:show]
+
   def index
     @users = User.page(params[:page]).per(5).reverse_order
   end
@@ -8,6 +11,24 @@ class UsersController < ApplicationController
     @posts = @user.posts.page(params[:page]).per(8).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.conversation_id == u.conversation_id then
+            @isConversation = true
+            @conversationId = cu.conversation_id
+          end
+        end
+      end
+      if @isConversation
+      else
+        @conversation = conversation.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit

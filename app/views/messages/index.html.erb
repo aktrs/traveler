@@ -1,0 +1,14 @@
+<h1>Messages with <%= @conversation.receiver == current_user ? @conversation.sender.name : @conversation.receiver.name %></h1>
+
+<div id="messages">
+  <% @messages.each do |message| %>
+    <div class="<%= message.user == current_user ? 'sent' : 'received' %>">
+      <p><%= message.body %></p>
+    </div>
+  <% end %>
+</div>
+
+<% form_with model: [@conversation, @message], local: true do |f| %>
+    <%= f.text_area :body, rows: 4 %>
+    <%= f.submit "Send" %>
+< % end %>

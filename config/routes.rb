@@ -24,4 +24,9 @@ Rails.application.routes.draw do
     end
     resource :relationships, only: [:create, :destroy]
   end
+
+  resources :users, only: [:show,:edit,:update]
+  resources :conversations, only: [:create,:show] 
+  resources :messages, only: [:create]
+
 end

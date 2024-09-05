@@ -1,0 +1,9 @@
+<h1>Conversations</h1>
+
+<% @conversations.each do |conversation| %>
+    <% if conversation.sender == current_user %>
+      <% link_to conversation.receiver.name, conversation_messages_path(conversation) %>
+    <% else %>
+      <% link_to conversation.sender.name, conversation_messages_path(conversation) %>
+    <% end %>
+< % end %>
