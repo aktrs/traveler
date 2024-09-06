@@ -17,15 +17,15 @@ class UsersController < ApplicationController
     else
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
-          if cu.conversation_id == u.conversation_id then
-            @isConversation = true
-            @conversationId = cu.conversation_id
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
           end
         end
       end
-      if @isConversation
+      if @isRoom
       else
-        @conversation = conversation.new
+        @room = Room.new
         @entry = Entry.new
       end
     end

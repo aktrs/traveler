@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show,:edit,:update]
-  resources :conversations, only: [:create,:show] 
+  resources :rooms, only: [:create,:show] 
   resources :messages, only: [:create]
 
 end
