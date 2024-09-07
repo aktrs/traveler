@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_06_121031) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_07_085038) do
   create_table "comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
@@ -19,22 +19,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_06_121031) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "conversations", force: :cascade do |t|
-    t.integer "sender_id"
-    t.integer "receiver_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["receiver_id"], name: "index_conversations_on_receiver_id"
-    t.index ["sender_id", "receiver_id"], name: "index_conversations_on_sender_id_and_receiver_id", unique: true
-    t.index ["sender_id"], name: "index_conversations_on_sender_id"
-  end
-
   create_table "entries", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "conversation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["conversation_id"], name: "index_entries_on_conversation_id"
+    t.integer "room_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
@@ -104,7 +93,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_06_121031) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "entries", "conversations"
   add_foreign_key "entries", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
