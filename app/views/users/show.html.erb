@@ -29,11 +29,12 @@
     <% if current_user != @user %>
       <% if current_user.following?(@user) %>
         <p class="d-flex align-self-end">
-          <%= button_to 'フォロー外す', relationship_path(relationship), method: :delete, class:"btn btn-danger" %>
+          <% relationship = current_user.relationships.find_by(followed_id: @user.id) %>
+          <%= link_to 'フォロー外す', user_relationship_path(@user,relationship), method: :delete, class:"btn btn-danger" %>
         </p>
         <% else %>
         <p class="d-flex align-self-end">
-          <%= button_to 'フォローする', user_relationships_path(@user), method: :post, class:"btn btn-success" %>
+          <%= link_to 'フォローする', user_relationships_path(@user), method: :post, class:"btn btn-success" %>
         </p>
       <% end %>
     <% end %>

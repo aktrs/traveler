@@ -11,3 +11,6 @@ window.raty = function(elem,opt){
     raty.init();
     return raty;
 }
+
+import Rails from "@rails/ujs";
+Rails.start();

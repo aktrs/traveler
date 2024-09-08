@@ -87,3 +87,4 @@ gem  'error_highlight', '>= 0.4.0'
 gem 'enum_help'
 
 gem 'devise-i18n'
+gem "rails-ujs", "~> 0.1.0"
