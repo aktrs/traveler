@@ -10,7 +10,7 @@
     <% unless @user.id == current_user.id %>
       <% if (current_user.following? @user) && (@user.following? current_user) %>
       <% if @isRoom == true %>
-        <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a></p>
+        <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットを始める</a></p>
       <% else %>
         <%= form_for @room do |f| %>
           <%= fields_for @entry do |e| %>
@@ -27,16 +27,23 @@
     </p>
     <% end %>
     <% if current_user != @user %>
+    <div class="right-button">
       <% if current_user.following?(@user) %>
-        <p class="d-flex align-self-end">
+        <p class="d-flex justify-content-end w-100">
           <% relationship = current_user.relationships.find_by(followed_id: @user.id) %>
-          <%= link_to 'フォロー外す', user_relationship_path(@user,relationship), method: :delete, class:"btn btn-danger" %>
+          <%= form_with(url: user_relationship_path(@user, relationship), method: :delete) do %>
+          <%= submit_tag 'フォロー外す', class: "btn btn-danger" %>
+        <% end %>
         </p>
         <% else %>
-        <p class="d-flex align-self-end">
-          <%= link_to 'フォローする', user_relationships_path(@user), method: :post, class:"btn btn-success" %>
+        <p class="d-flex justify-content-end w-100">
+        <%= form_with(url: user_relationships_path(@user.id), method: :post) do %>
+          <%= hidden_field_tag :followed_id, @user.id %>
+          <%= submit_tag 'フォローする', class: "btn btn-success" %>
+        <% end %>
         </p>
       <% end %>
+      </div>
     <% end %>
     <div class="d-flex w-100">
       <%= attachment_image_tag @user, :profile_image, size:'100x100', fallback: "no_image.svg", class:"mb-3 profile_img" %>
