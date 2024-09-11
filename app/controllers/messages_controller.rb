@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
                 redirect_back(fallback_location: root_path)
             end
             else
+                flash[:alert] = "トークルームが見つかりません。"
                 redirect_back(fallback_location: root_path)
             end
         end

@@ -1,0 +1,19 @@
+.cover-room{
+    height:100%;
+    width:100%;
+    background-image: url(/assets/mypage-scaled.jpg);
+    background-color: rgba(255,255,255,0.4);
+    background-blend-mode: lighten;
+    background-size: 100% 100%;
+}
+
+.form-text-field{
+    position:absolute;
+    bottom:0;
+}
+
+.form-submit{
+    position:absolute;
+    bottom:0;
+    margin-left:530px;
+}

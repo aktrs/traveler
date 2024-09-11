@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_10_112456) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_10_125134) do
   create_table "comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
@@ -35,13 +35,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_10_112456) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "conversation_id", null: false
     t.integer "user_id", null: false
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "room_id"
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -95,7 +93,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_10_112456) do
   end
 
   add_foreign_key "entries", "users"
-  add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"
