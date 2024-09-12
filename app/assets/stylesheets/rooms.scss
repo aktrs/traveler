@@ -5,15 +5,43 @@
     background-color: rgba(255,255,255,0.4);
     background-blend-mode: lighten;
     background-size: 100% 100%;
+    position:relative;
 }
 
-.form-text-field{
-    position:absolute;
-    bottom:0;
+h2{
+   text-align:center; 
 }
 
-.form-submit{
-    position:absolute;
+.message-input{
+    margin-right:10px;
+}
+
+.chat-input-container{
+    position:fixed;
     bottom:0;
-    margin-left:530px;
+    display:flex;
+    margin:10px auto;
+    justify-content:center;
+}
+
+.chat-input-container form{
+    width:100%;
+    max-width:1200px;
+}
+
+.card.custom-card-width{
+    max-width:1200px !important;
+    width:100% !important;
+}
+
+.card{
+    width:100%;
+}
+
+.container{
+    width:100%;
+}
+
+.row{
+    width:100%;
 }

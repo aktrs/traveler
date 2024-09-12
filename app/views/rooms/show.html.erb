@@ -7,23 +7,30 @@
     <% end %>
 <% end %>
 <%= link_to "ユーザー一覧に戻る", users_path %>
-<div class="ml-3 mb-3 card w-60">
+<div class="ml-3 mb-3 card w-100">
   <% if @messages.present? %>
     <% @messages.each do |m| %>
-        <% @myUserId =m.user.id %>
-        <p><%= m.body %></p>
+        <% if @myUserId == m.user.id %>
+          <div class="d-flex justify-content-end mb-2">
+            <p class="bg-success-subtle p-2 rounded d-inline-block"><%= m.body %></p>
+          </div>
+        <% else %>
+          <div class="text-left mt-2">
+            <p class="bg-danger-subtle p-2 rounded d-inline-block"><%= m.body %></p>
+          </div>
+        <% end %>
     <% end %>
 <% end %>
 </div>
 
-<div class = "d-flex justify-content-center w-100">
-<%= form_for @message do |f| %>
-  <div class="d-flex flex-column align-items-center">
-    <%= f.text_field :body, placeholder: "メッセージを入力して下さい", size: 50, class:"form-text-field" %>
+<div class = "chat-input-container">
+  <%= form_for @message, html: { class: "d-flex align-items-center w-100"} do |f| %>
+    <div class="d-flex">
+      <%= f.text_field :body, placeholder: "メッセージを入力して下さい", size: 50, class:"form-text-field message-input" %>
       <%= f.hidden_field :room_id, value: @room.id %>
-        <%= f.submit "送信する", class:'form-submit' %>
-  </div>
-<% end %>
+      <%= f.submit "送信する", class:"form-submit ml-2" %>
+    </div>
+  <% end %>
 </div>
 </div>
 </div>
